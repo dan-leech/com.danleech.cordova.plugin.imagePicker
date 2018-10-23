@@ -2,7 +2,7 @@
 
 Native Photo/Video Gallery for iOS and Android, inspired by [Terikon](https://github.com/terikon/cordova-plugin-photo-library)
 
-Totally rewritten to native libraries for Android and iOS.
+Totally rewritten to native components for Android and iOS.
 
 
 # Install
