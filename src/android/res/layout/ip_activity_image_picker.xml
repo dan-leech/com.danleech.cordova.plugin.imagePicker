@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical">
+
+  <android.support.design.widget.AppBarLayout
+    android:id="@+id/ip_main_appbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true">
+
+    <android.support.v7.widget.Toolbar
+      android:id="@+id/ip_main_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/ip_dark"
+      android:contentInsetLeft="0dp"
+      android:contentInsetStart="0dp"
+      app:contentInsetLeft="0dp"
+      app:contentInsetStart="0dp"
+      android:contentInsetRight="0dp"
+      android:contentInsetEnd="0dp"
+      app:contentInsetRight="0dp"
+      app:contentInsetEnd="0dp">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+          <android.support.v7.widget.AppCompatButton
+              android:id="@+id/ip_main_btn_back"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_alignParentStart="true"
+              android:drawableStart="@drawable/ip_ic_arrow_left"
+              android:drawablePadding="@dimen/ip_padding_icon"
+              android:paddingStart="@dimen/ip_padding_medium"
+              android:paddingEnd="@dimen/ip_padding_medium"
+              android:text="@string/ip_back"
+              android:textSize="@dimen/ip_font_medium"
+              android:textAllCaps="false"
+              android:textColor="@color/ip_white"
+              app:backgroundTint="@color/ip_dark"/>
+
+          <com.danleech.cordova.plugin.imagePicker.view.Button
+              android:id="@+id/ip_main_btn_done"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_alignParentEnd="true"
+              android:drawableStart="@drawable/ip_ic_check"
+              android:drawablePadding="@dimen/ip_padding_icon"
+              android:paddingStart="@dimen/ip_padding_medium"
+              android:paddingEnd="@dimen/ip_padding_medium"
+              android:text="@string/ip_done"
+              android:textSize="@dimen/ip_font_medium"
+              android:textAllCaps="false"
+              android:textColor="@color/ip_white"
+              app:backgroundTint="@color/ip_positive"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+          <Spinner
+              android:id="@+id/ip_main_folder_spinner"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:layout_marginStart="@dimen/ip_padding_small"/>
+          <com.danleech.cordova.plugin.imagePicker.view.Button
+              android:id="@+id/ip_main_btn_camera"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:drawableStart="@drawable/ip_ic_camera"
+              android:drawablePadding="@dimen/ip_padding_icon"
+              android:paddingStart="@dimen/ip_padding_medium"
+              android:paddingEnd="@dimen/ip_padding_medium"
+              android:text="@string/ip_camera"
+              android:textSize="@dimen/ip_font_medium"
+              android:textAllCaps="false"
+              android:textColor="@color/ip_white"
+              app:backgroundTint="@color/ip_primary"/>
+        </LinearLayout>
+
+      </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.design.widget.CoordinatorLayout
+    android:id="@+id/ip_main_coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/ip_main_appbar"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+
+    <com.danleech.cordova.plugin.imagePicker.view.AppBarPreviewLayout
+      android:id="@+id/ip_main_preview_appbar"
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:elevation="8dp"
+      android:translationZ="8dp"
+      app:layout_behavior="com.danleech.cordova.plugin.imagePicker.view.AppBarLayoutImagePreviewBehavior">
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="42dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <ImageView
+            android:id="@+id/ip_main_preview_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <VideoView
+            android:id="@+id/ip_main_preview_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"/>
+      </RelativeLayout>
+
+    </com.danleech.cordova.plugin.imagePicker.view.AppBarPreviewLayout>
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/ip_main_rv_gallery"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:clipToPadding="true"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+  </android.support.design.widget.CoordinatorLayout>
+
+  <com.danleech.cordova.plugin.imagePicker.view.SnackBarView
+    android:id="@+id/ip_main_snackbar"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_below="@id/ip_main_appbar"
+    android:background="@color/ip_black_alpha_aa"/>
+
+  <!--<LinearLayout-->
+    <!--android:id="@+id/ip_main_footer"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="56dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:orientation="horizontal">-->
+    <!--<FrameLayout-->
+      <!--android:id="@+id/ip_main_btn_gallery"-->
+      <!--style="?android:attr/buttonStyle"-->
+      <!--android:layout_width="0dp"-->
+      <!--android:layout_height="match_parent"-->
+      <!--android:layout_weight="1"-->
+      <!--android:layout_marginLeft="-5dip"-->
+      <!--android:layout_marginRight="-5dip"-->
+      <!--android:layout_marginTop="-5dip"-->
+      <!--android:layout_marginBottom="-5dip"-->
+      <!--android:stateListAnimator="@null"-->
+      <!--android:backgroundTint="@color/ip_dark" >-->
+      <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:drawableStart="@drawable/ip_ic_gallery"-->
+        <!--android:drawablePadding="@dimen/ip_padding_icon"-->
+        <!--android:text="@string/ip_gallery"-->
+        <!--android:textSize="@dimen/ip_font_medium"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="@color/ip_white"-->
+        <!--style="@style/ip_btn_captionOnly"-->
+        <!--/>-->
+    <!--</FrameLayout>-->
+    <!--<FrameLayout-->
+      <!--android:id="@+id/ip_main_btn_camera"-->
+      <!--style="?android:attr/buttonStyle"-->
+      <!--android:layout_width="0dp"-->
+      <!--android:layout_height="match_parent"-->
+      <!--android:layout_weight="1"-->
+      <!--android:layout_marginLeft="-5dip"-->
+      <!--android:layout_marginRight="-5dip"-->
+      <!--android:layout_marginTop="-5dip"-->
+      <!--android:layout_marginBottom="-5dip"-->
+      <!--android:stateListAnimator="@null"-->
+      <!--android:backgroundTint="@color/ip_dark" >-->
+      <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:drawableStart="@drawable/ip_ic_camera"-->
+        <!--android:drawablePadding="@dimen/ip_padding_icon"-->
+        <!--android:text="@string/ip_camera"-->
+        <!--android:textSize="@dimen/ip_font_medium"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="@color/ip_white"-->
+        <!--style="@style/ip_btn_captionOnly"-->
+        <!--/>-->
+    <!--</FrameLayout>-->
+  <!--</LinearLayout>-->
+</RelativeLayout>

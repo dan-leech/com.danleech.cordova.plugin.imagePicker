@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerItemStyle"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableStart="@drawable/ip_ic_folder_open"
+    android:drawablePadding="@dimen/ip_padding_medium"
+    android:ellipsize="marquee"
+    android:textAlignment="inherit"
+    android:textSize="@dimen/ip_font_medium"/>

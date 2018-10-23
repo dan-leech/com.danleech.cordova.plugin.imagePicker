@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="ip_black_alpha_aa">#aa000000</color>
+  <color name="ip_white">#ffffff</color>
+  <color name="ip_dark">#424242</color>
+  <color name="ip_dark_grey">#333333</color>
+  <color name="ip_primary">#027be3</color>
+  <color name="ip_positive">#21ba45</color>
+</resources>

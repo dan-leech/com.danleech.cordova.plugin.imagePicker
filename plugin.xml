@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  id="com.danleech.cordova.plugin.imagePicker"
+  version="1.0.0">
+
+	<name>ImagePicker</name>
+
+	<description>
+		This plugin allows selection of single multiple images/video from the camera roll / gallery in a cordova app
+	</description>
+
+	<license>Apache 2.0</license>
+
+	<engines>
+		<engine name="cordova" version=">=8.0.0" />
+	</engines>
+
+	<js-module src="www/image-picker.js" name="ImagePicker">
+		<clobbers target="cordova.plugins.ImagePicker" />
+	</js-module>
+
+	<!-- ios -->
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="ImagePicker">
+				<param name="ios-package" value="ImagePickerPlugin" />
+			</feature>
+		</config-file>
+
+		<preference name="PHOTO_LIBRARY_USAGE_DESCRIPTION" default="App needs gallery to choose and store images and videos" />
+		<preference name="CAMERA_USAGE_DESCRIPTION" default="App needs camera to take photos and videos" />
+		<preference name="MICROPHONE_USAGE_DESCRIPTION" default="App needs camera to take photos and videos" />
+
+		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+			<string>$CAMERA_USAGE_DESCRIPTION</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+			<string>$PHOTO_LIBRARY_USAGE_DESCRIPTION</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSPhotoLibraryAddUsageDescription">
+			<string>$PHOTO_LIBRARY_USAGE_DESCRIPTION</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+			<string>$MICROPHONE_USAGE_DESCRIPTION</string>
+		</config-file>
+
+		<source-file src="src/ios/ImagePickerPlugin.swift" />
+		<source-file src="src/ios/PhotoLibraryProtocol.swift" />
+		<source-file src="src/ios/PhotoLibraryService.swift" />
+		<source-file src="src/ios/PhotoLibraryGetLibraryOptions.swift" />
+
+		<source-file src="src/ios/YPImagePicker/YPImagePicker.swift" target-dir="YPImagePicker" />
+		<source-file src="src/ios/YPImagePicker/YPPickerVC.swift" target-dir="YPImagePicker" />
+
+		<source-file src="src/ios/YPImagePicker/BottomPager/YPBottomPager.swift" target-dir="YPImagePicker/BottomPager" />
+		<source-file src="src/ios/YPImagePicker/BottomPager/YPBottomPagerView.swift" target-dir="YPImagePicker/BottomPager" />
+		<source-file src="src/ios/YPImagePicker/BottomPager/YPMenuItem.swift" target-dir="YPImagePicker/BottomPager" />
+		<source-file src="src/ios/YPImagePicker/BottomPager/YPPagerMenu.swift" target-dir="YPImagePicker/BottomPager" />
+
+		<source-file src="src/ios/YPImagePicker/Configuration/YPColors.swift" target-dir="YPImagePicker/Configuration" />
+		<source-file src="src/ios/YPImagePicker/Configuration/YPIcons.swift" target-dir="YPImagePicker/Configuration" />
+		<source-file src="src/ios/YPImagePicker/Configuration/YPImagePickerConfiguration.swift" target-dir="YPImagePicker/Configuration" />
+		<source-file src="src/ios/YPImagePicker/Configuration/YPImageSize.swift" target-dir="YPImagePicker/Configuration" />
+		<source-file src="src/ios/YPImagePicker/Configuration/YPPickerScreen.swift" target-dir="YPImagePicker/Configuration" />
+		<source-file src="src/ios/YPImagePicker/Configuration/YPWordings.swift" target-dir="YPImagePicker/Configuration" />
+
+		<source-file src="src/ios/YPImagePicker/Filters/Crop/YPCropVC.swift" target-dir="YPImagePicker/Filters/Crop" />
+		<source-file src="src/ios/YPImagePicker/Filters/Crop/YPCropView.swift" target-dir="YPImagePicker/Filters/Crop" />
+		<source-file src="src/ios/YPImagePicker/Filters/Video/YPVideoFiltersVC.swift" target-dir="YPImagePicker/Filters/Video" />
+		<source-file src="src/ios/YPImagePicker/Filters/Video/YPVideoFiltersVC.xib" target-dir="YPImagePicker/Filters/Video" />
+		<source-file src="src/ios/YPImagePicker/Filters/Video/YPVideoView.swift" target-dir="YPImagePicker/Filters/Video" />
+		<source-file src="src/ios/YPImagePicker/Filters/YPFilter.swift" target-dir="YPImagePicker/Filters" />
+		<source-file src="src/ios/YPImagePicker/Filters/YPFilterCollectionViewCell.swift" target-dir="YPImagePicker/Filters" />
+		<source-file src="src/ios/YPImagePicker/Filters/YPFiltersView.swift" target-dir="YPImagePicker/Filters" />
+		<source-file src="src/ios/YPImagePicker/Filters/YPPhotoFiltersVC.swift" target-dir="YPImagePicker/Filters" />
+
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVAsset+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVAssetTrack+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVCaptureDevice+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVCaptureSession+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVFileType+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVFoundation+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVMutableComposition+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/AVPlayer+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/CGFloat+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/CGRect+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/CIImage+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/IndexSet+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/NSFileManager+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/PHCachingImageManager+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/PHFetchResult+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/String+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/UIButton+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/UICollectionView+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/UIColor+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/UIImage+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/Extensions/URL+Extensions.swift" target-dir="YPImagePicker/Helpers/Extensions" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPAlerts.swift" target-dir="YPImagePicker/Helpers" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPHelper.swift" target-dir="YPImagePicker/Helpers" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPLoaders.swift" target-dir="YPImagePicker/Helpers" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPLoadingView.swift" target-dir="YPImagePicker/Helpers" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPPermissionCheckable.swift" target-dir="YPImagePicker/Helpers" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPPhotoSaver.swift" target-dir="YPImagePicker/Helpers" />
+		<source-file src="src/ios/YPImagePicker/Helpers/YPVideoProcessor.swift" target-dir="YPImagePicker/Helpers" />
+
+		<source-file src="src/ios/YPImagePicker/Models/YPDragDirection.swift" target-dir="YPImagePicker/Models" />
+		<source-file src="src/ios/YPImagePicker/Models/YPLibrarySelection.swift" target-dir="YPImagePicker/Models" />
+		<source-file src="src/ios/YPImagePicker/Models/YPMediaItem.swift" target-dir="YPImagePicker/Models" />
+		<source-file src="src/ios/YPImagePicker/Models/YPPermissionDeniedPopup.swift" target-dir="YPImagePicker/Models" />
+		<source-file src="src/ios/YPImagePicker/Models/YPTrimError.swift" target-dir="YPImagePicker/Models" />
+
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/LibraryMediaManager.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAlbum.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAlbumCell.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAlbumsManager.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAlbumVC.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAlbumView.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAssetViewContainer.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPAssetZoomableView.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPGridView.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibrary+LibraryChange.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryVC+CollectionView.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryVC+PanGesture.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryVC.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryView.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryView.xib" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryViewCell.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Gallery/YPLibraryViewDelegate.swift" target-dir="YPImagePicker/Pages/Gallery" />
+		<source-file src="src/ios/YPImagePicker/Pages/Photo/PostiOS10PhotoCapture.swift" target-dir="YPImagePicker/Pages/Photo" />
+		<source-file src="src/ios/YPImagePicker/Pages/Photo/PreiOS10PhotoCapture.swift" target-dir="YPImagePicker/Pages/Photo" />
+		<source-file src="src/ios/YPImagePicker/Pages/Photo/YPCameraVC.swift" target-dir="YPImagePicker/Pages/Photo" />
+		<source-file src="src/ios/YPImagePicker/Pages/Photo/YPCameraView.swift" target-dir="YPImagePicker/Pages/Photo" />
+		<source-file src="src/ios/YPImagePicker/Pages/Photo/YPPhotoCapture.swift" target-dir="YPImagePicker/Pages/Photo" />
+		<source-file src="src/ios/YPImagePicker/Pages/Photo/YPPhotoCaptureDefaults.swift" target-dir="YPImagePicker/Pages/Photo" />
+		<source-file src="src/ios/YPImagePicker/Pages/Video/YPVideoCaptureHelper.swift" target-dir="YPImagePicker/Pages/Video" />
+		<source-file src="src/ios/YPImagePicker/Pages/Video/YPVideoCaptureVC.swift" target-dir="YPImagePicker/Pages/Video" />
+
+		<source-file src="src/ios/YPImagePicker/SelectionsGallery/YPSelectionsGalleryCell.swift" target-dir="YPImagePicker/SelectionsGallery" />
+		<source-file src="src/ios/YPImagePicker/SelectionsGallery/YPSelectionsGalleryVC.swift" target-dir="YPImagePicker/SelectionsGallery" />
+		<source-file src="src/ios/YPImagePicker/SelectionsGallery/YPSelectionsGalleryView.swift" target-dir="YPImagePicker/SelectionsGallery" />
+
+		<resource-file src="src/ios/YPImagePicker/Resources/Assets.xcassets" />
+		<resource-file src="src/ios/YPImagePicker/Resources/en.lproj" />
+
+		<framework src="src/ios/PryntTrimmerView.framework" custom="true" embed="true"/>
+		<framework src="src/ios/Stevia.framework" custom="true" embed="true"/>
+
+		<preference name="UseSwiftLanguageVersion" value="4"/>
+		<preference name="UseSwiftLanguageVersion" value="4" default="4"/>
+		<preference name="USESWIFTLANGUAGEVERSION" value="4" default="4"/>
+
+		<dependency id="cordova-plugin-add-swift-support" version="~1.7.2"/>
+	</platform>
+
+	<!-- android -->
+	<platform name="android">
+		<hook src="hooks/patch-android-studio-check.js" type="before_plugin_install" />
+		<hook src="hooks/patch-android-studio-check.js" type="before_plugin_add" />
+		<hook src="hooks/patch-android-studio-check.js" type="before_build" />
+		<hook src="hooks/patch-android-studio-check.js" type="before_run" />
+		<hook src="hooks/patch-android-studio-check.js" type="before_plugin_rm" />
+
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="ImagePicker">
+				<param name="android-package" value="com.danleech.cordova.plugin.imagePicker.ImagePickerPlugin"/>
+				<param name="onload" value="true" />
+			</feature>
+			<allow-navigation href="cdvimagepicker:*" />
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+		    <activity android:label="@string/imagepicker_app_name" android:name="com.danleech.cordova.plugin.imagePicker.features.ImagePickerActivity" android:theme="@style/ImagePickerTheme">
+            </activity>
+			<provider
+					android:name="com.danleech.cordova.plugin.imagePicker.helper.ImagePickerFileProvider"
+					android:authorities="${applicationId}.imagepicker.provider"
+					android:exported="false"
+					android:grantUriPermissions="true">
+				<meta-data
+						android:name="android.support.FILE_PROVIDER_PATHS"
+						android:resource="@xml/imagepicker_provider_paths"/>
+			</provider>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.CAMERA"/>
+		</config-file>
+
+		<source-file src="src/android/src/adapter/BaseListAdapter.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/adapter" />
+		<source-file src="src/android/src/adapter/FolderPickerAdapter.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/adapter" />
+		<source-file src="src/android/src/adapter/ImagePickerAdapter.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/adapter" />
+
+		<source-file src="src/android/src/features/camera/CameraHelper.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/camera" />
+		<source-file src="src/android/src/features/camera/CameraModule.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/camera" />
+		<source-file src="src/android/src/features/camera/ImageCameraModule.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/camera" />
+		<source-file src="src/android/src/features/camera/VideoCameraModule.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/camera" />
+		<source-file src="src/android/src/features/camera/OnImageReadyListener.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/camera" />
+
+		<source-file src="src/android/src/features/cameraonly/CameraOnlyConfig.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/cameraonly" />
+		<source-file src="src/android/src/features/cameraonly/ImagePickerCameraOnly.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/cameraonly" />
+
+		<source-file src="src/android/src/features/common/BaseConfig.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/common" />
+		<source-file src="src/android/src/features/common/BasePresenter.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/common" />
+		<source-file src="src/android/src/features/common/ImageLoaderListener.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/common" />
+		<source-file src="src/android/src/features/common/MvpView.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/common" />
+
+		<source-file src="src/android/src/features/imageloader/DefaultImageLoader.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/imageloader" />
+		<source-file src="src/android/src/features/imageloader/ImageLoader.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/imageloader" />
+		<source-file src="src/android/src/features/imageloader/ImageType.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/imageloader" />
+
+		<source-file src="src/android/src/features/recyclers/AppBarManager.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/recyclers" />
+		<source-file src="src/android/src/features/recyclers/OnBackAction.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/recyclers" />
+		<source-file src="src/android/src/features/recyclers/RecyclerLayoutManager.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/recyclers" />
+		<source-file src="src/android/src/features/recyclers/RecyclerViewManager.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features/recyclers" />
+
+		<source-file src="src/android/src/features/ImageFileLoader.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ImagePickerActivity.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ImagePickerConfig.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ImagePickerConfigFactory.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ImagePickerPresenter.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ImagePickerSavePath.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ImagePickerView.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/IpCons.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+		<source-file src="src/android/src/features/ReturnMode.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/features" />
+
+		<source-file src="src/android/src/helper/ConfigUtils.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+		<source-file src="src/android/src/helper/ImagePickerFileProvider.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+		<source-file src="src/android/src/helper/ImagePickerPreferences.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+		<source-file src="src/android/src/helper/ImagePickerUtils.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+		<source-file src="src/android/src/helper/IpLogger.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+		<source-file src="src/android/src/helper/LocaleManager.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+		<source-file src="src/android/src/helper/ViewUtils.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/helper" />
+
+		<source-file src="src/android/src/listeners/OnFolderClickListener.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/listeners" />
+		<source-file src="src/android/src/listeners/OnImageClickListener.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/listeners" />
+		<source-file src="src/android/src/listeners/OnImagePositionSelectedListener.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/listeners" />
+		<source-file src="src/android/src/listeners/OnImageSelectedListener.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/listeners" />
+
+		<source-file src="src/android/src/model/Folder.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/model" />
+		<source-file src="src/android/src/model/Image.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/model" />
+		<source-file src="src/android/src/model/ImageFactory.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/model" />
+
+		<source-file src="src/android/src/view/AppBarLayoutImagePreviewBehavior.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/view" />
+		<source-file src="src/android/src/view/AppBarPreviewLayout.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/view" />
+		<source-file src="src/android/src/view/Button.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/view" />
+		<source-file src="src/android/src/view/GridSpacingItemDecoration.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/view" />
+		<source-file src="src/android/src/view/SnackBarView.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/view" />
+		<source-file src="src/android/src/view/SquareFrameLayout.java" target-dir="src/com/danleech/cordova/plugin/imagePicker/view" />
+
+		<source-file src="src/android/src/FakeR.java" target-dir="src/com/danleech/cordova/plugin/imagePicker" />
+		<source-file src="src/android/src/ImagePickerPlugin.java" target-dir="src/com/danleech/cordova/plugin/imagePicker" />
+		<source-file src="src/android/src/PhotoLibraryService.java" target-dir="src/com/danleech/cordova/plugin/imagePicker" />
+
+
+		<source-file src="src/android/res/drawable/ip_ic_arrow_left.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ip_ic_camera.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ip_ic_check.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ip_ic_check_white.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ip_ic_folder_open.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ip_ic_gallery.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ip_image_placeholder.xml" target-dir="res/drawable"/>
+
+		<source-file src="src/android/res/layout/ip_activity_image_picker.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/ip_folder_spinner_item.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/ip_item_image.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/ip_snackbar.xml" target-dir="res/layout"/>
+
+		<source-file src="src/android/res/values/imagepicker_colors.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values/imagepicker_dimens.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values/imagepicker_strings_en.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values/imagepicker_styles.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values/imagepicker_themes.xml" target-dir="res/values"/>
+
+		<source-file src="src/android/res/xml/imagepicker_provider_paths.xml" target-dir="res/xml"/>
+
+		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+	</platform>
+</plugin>

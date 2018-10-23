@@ -1,0 +1,13 @@
+{
+  "name": "com.danleech.cordova.plugin.imagePicker",
+  "version": "1.0.0",
+  "description": "Image picker plugin",
+  "keywords": [
+    "cordova",
+    "gallery",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Daniil Kostin",
+  "license": "Apache 2.0"
+}
