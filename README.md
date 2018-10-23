@@ -10,7 +10,7 @@ Totally rewritten to native components for Android and iOS.
 cordova plugin add https://github.com/dan-leech/com.danleech.cordova.plugin.imagePicker
 ```
 
-###Android
+### Android
 
 Add cdvimagepicker protocol  to Content-Security-Policy, like this:
 
@@ -18,12 +18,12 @@ Add cdvimagepicker protocol  to Content-Security-Policy, like this:
 <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: ws: cdvimagepicker: https://ssl.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src * data: blob: cdvimagepicker: https://firebasestorage.googleapis.com">
 ```
 
-###iOS
+### iOS
 Set swift 4.1 manually in xcode target build settings
 
-#Usage
+# Usage
 
-####Pick Images:
+#### Pick Images:
 ```js
   cordova.plugins.ImagePicker.getPictures(images => {
     // do something with images      
@@ -39,7 +39,7 @@ Set swift 4.1 manually in xcode target build settings
   })
 ```
 
-####Take image source:
+#### Take image source:
 ##### Android
 ```js
 'cdvimagepicker://thumbnail?photoId=' + encodeURIComponent(img.id + ';' + img.path) + '&width=500&height=500&quality=100&cropX=' + img.cropX + '&cropY=' + img.cropY + '&cropW=' + img.cropW + '&cropH=' + img.cropH
@@ -74,7 +74,7 @@ function processImages (oldImages, images) {
 }
 ```
 
-####Get image data from iOS:
+#### Get image data from iOS:
 ```js
 cordova.plugins.ImagePicker.requestPermission(() => {
    items.forEach(item => {
@@ -129,7 +129,7 @@ function dataURLtoBlob (dataUrl) {
 }
 ```
 
-####Select video:
+#### Select video:
 ```js
 cordova.plugins.ImagePicker.getVideo(videos => {
   // do something with video
@@ -138,16 +138,16 @@ cordova.plugins.ImagePicker.getVideo(videos => {
 }, { thumbWidth: 1920, thumbHeight: 1080, thumbQuality: 100 })
 ```
 
-####Play video:
+#### Play video:
 
 use https://github.com/dan-leech/com.danleech.cordova.plugin.videoplayer
 ```js
 cordova.plugins.VideoPlayer.play(this.src)
 ```
 
-####Process video before play on iOS:
+#### Process video before play on iOS:
 
-#####Video thumbnail:
+##### Video thumbnail:
 ```js
 cordova.plugins.ImagePicker.requestPermission(() => {
   items.forEach(item => {
@@ -180,12 +180,12 @@ cordova.plugins.ImagePicker.requestPermission(() => {
 })
 ```
 
-####Get video Blob
-#####Android
+#### Get video Blob
+##### Android
 ```js
 'cdvimagepicker://photo?photoId=' + encodeURIComponent(payload.source.src.id + ';' + payload.source.src.path
 ```
-#####iOS
+##### iOS
 ```js
 new Promise((resolve, reject) => {
   cordova.plugins.ImagePicker.getPhoto(dataUrl => {
