@@ -114,8 +114,13 @@ public class PhotoLibraryService {
 
       if (fit) {
         double ratio = (double) options.outWidth /  (double) options.outHeight;
-        thumbnailWidth = (int) (thumbnailWidth * ratio);
-        thumbnailHeight = (int) (thumbnailWidth / ratio);
+        if (ratio <= 1) {
+          thumbnailWidth = (int) (thumbnailWidth * ratio);
+          thumbnailHeight = (int) (thumbnailWidth / ratio);
+        } else {
+          thumbnailWidth = (int) (thumbnailWidth / ratio);
+          thumbnailHeight = (int) (thumbnailWidth * ratio);
+        }
       }
 
       // get bitmap with size of closest power of 2
