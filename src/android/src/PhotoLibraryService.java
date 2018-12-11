@@ -140,6 +140,18 @@ public class PhotoLibraryService {
         bitmap.recycle();
       }
 
+      if (fit) {
+        double ratio = (double) rotatedBitmap.getWidth() /  (double) rotatedBitmap.getHeight();
+        if (ratio <= 1) {
+          thumbnailWidth = (int) (thumbnailWidth * ratio);
+          thumbnailHeight = (int) (thumbnailWidth / ratio);
+        } else {
+          thumbnailWidth = (int) (thumbnailWidth / ratio);
+          thumbnailHeight = (int) (thumbnailWidth * ratio);
+        }
+      }
+
+
       Bitmap thumbnailBitmap = ThumbnailUtils.extractThumbnail(rotatedBitmap, thumbnailWidth, thumbnailHeight);
       if (rotatedBitmap != thumbnailBitmap) {
         rotatedBitmap.recycle();

@@ -1,6 +1,6 @@
 {
   "name": "com.danleech.cordova.plugin.imagePicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Image picker plugin",
   "keywords": [
     "cordova",

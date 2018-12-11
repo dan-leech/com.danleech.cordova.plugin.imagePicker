@@ -124,8 +124,44 @@ public class ImagePickerPlugin extends CordovaPlugin {
 
 			ImagePickerConfig config = ImagePickerConfigFactory.createDefault();
 			config.setOnlyVideo(true);
-			config.setMode(IpCons.MODE_SINGLE);
-            config.setReturnMode(ReturnMode.ALL);
+
+			if (this.params.has("multipleMode") && this.params.getBoolean("multipleMode")) {
+				config.setMode(IpCons.MODE_MULTIPLE);
+			} else {
+				config.setMode(IpCons.MODE_SINGLE);
+			}
+
+			if (this.params.has("returnMode")) {
+				switch (this.params.getString("returnMode")) {
+					case "all":
+						config.setReturnMode(ReturnMode.ALL);
+						break;
+					case "none":
+						config.setReturnMode(ReturnMode.NONE);
+						break;
+					case "camera_only":
+						config.setReturnMode(ReturnMode.CAMERA_ONLY);
+						break;
+					case "gallery_only":
+						config.setReturnMode(ReturnMode.GALLERY_ONLY);
+						break;
+				}
+			}
+
+			if (this.params.has("selectedImages")) {
+				ArrayList<Image> selectedImages = new ArrayList<>();
+				JSONArray res = this.params.getJSONArray("selectedImages");
+				for (int i = 0; i < res.length(); i++) {
+					JSONObject resObj = res.getJSONObject(i);
+					selectedImages.add(new Image(resObj.getLong("id"), resObj.getString("name"), resObj.getString("path"), resObj.getString("duration"), resObj.getBoolean("isVideo")));
+				}
+
+				config.setSelectedImages(selectedImages);
+			}
+
+			if (this.params.has("limit")) {
+				config.setLimit(this.params.getInt("limit"));
+			}
 
 			intent.putExtra(ImagePickerConfig.class.getSimpleName(), config);
 			if (this.cordova != null) {

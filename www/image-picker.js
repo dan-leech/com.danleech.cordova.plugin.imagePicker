@@ -45,7 +45,20 @@ ImagePicker.prototype.getPictures = function(success, fail, options) {
 
 ImagePicker.prototype.getVideo = function(success, fail, options) {
   if (!options) {
-    options = {};
+    options = {
+      maximumImagesCount: options.maximumImagesCount ? options.maximumImagesCount : 1,
+      multipleMode: options.multipleMode !== undefined ? options.multipleMode : false,
+      returnMode: options.returnMode,
+      selectedImages: options.selectedImages,
+      limit: options.limit,
+      width: options.width ? options.width : 0,
+      height: options.height ? options.height : 0,
+      quality: options.quality ? options.quality : 100,
+      // ios
+      thumbWidth: options.thumbWidth ? options.thumbWidth : 100,
+      thumbHeight: options.thumbHeight ? options.thumbHeight : 100,
+      thumbQuality: options.thumbQuality ? options.thumbQuality : 100
+    };
   }
 
   return cordova.exec(success, fail, "ImagePicker", "getVideo", [options]);
