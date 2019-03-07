@@ -4,6 +4,11 @@ Native Photo/Video Gallery for iOS and Android, inspired by [Terikon](https://gi
 
 Totally rewritten to native components for Android and iOS.
 
+### Android screenshot
+![android-screenshot](../assets/image-picker-android.jpg?raw=true)
+
+### iOS screenshot
+coming soon 
 
 # Install
 ```
