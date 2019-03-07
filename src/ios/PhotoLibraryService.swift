@@ -842,13 +842,14 @@ final class PhotoLibraryService {
         var data: Data?
         var mimeType: String?
 
-        if (imageHasAlpha(image)){
-            data = UIImagePNGRepresentation(image)
-            mimeType = data != nil ? "image/png" : nil
-        } else {
-            data = UIImageJPEGRepresentation(image, CGFloat(quality))
-            mimeType = data != nil ? "image/jpeg" : nil
-        }
+//        if (imageHasAlpha(image)){
+//            data = UIImagePNGRepresentation(image)
+//            mimeType = data != nil ? "image/png" : nil
+//        } else {
+        let q = quality > 1 ? quality / 100 : quality
+        data = UIImageJPEGRepresentation(image, CGFloat(q))
+        mimeType = data != nil ? "image/jpeg" : nil
+//        }
 
         if data != nil && mimeType != nil {
             return PictureData(data: data!, mimeType: mimeType!)

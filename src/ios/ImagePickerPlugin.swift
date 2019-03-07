@@ -12,7 +12,7 @@ import Photos
     let resultsButton = UIButton()
 
     lazy var concurrentQueue: DispatchQueue = DispatchQueue(label: "photo-library.queue.plugin", qos: DispatchQoS.utility, attributes: [.concurrent])
-    
+
     lazy var operationQueue: OperationQueue = {
         var queue = OperationQueue()
         queue.name = "PhotoLibrary Protocol Queue"
@@ -420,7 +420,10 @@ import Photos
         let width = options["width"] as? Int ?? 512
         let height = options["height"] as? Int ?? 384
         let fit = options["fit"] as? Bool ?? false
-        let quality = options["quality"] as? Float ?? 0.5
+        var quality = options["quality"] as? Float ?? 0.5
+        if (quality > 1) {
+            quality = quality / 100
+        }
 
         let cropX = options["cropX"] as? CGFloat ?? 0.0
         let cropY = options["cropY"] as? CGFloat ?? 0.0
@@ -486,7 +489,7 @@ import Photos
             }
         }
     }
-    
+
     func isAuthorized(_ command: CDVInvokedUrlCommand) {
         concurrentQueue.async {
             let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: PhotoLibraryService.hasPermission())
